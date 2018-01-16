@@ -1,0 +1,14 @@
+[ui]
+username = Otto Land <autoland@example.com>
+merge = internal:merge
+
+[extensions]
+purge =
+rebase =
+rewritecommitdescriptions = /home/autoland/version-control-tools/autoland/hgext/rewritecommitdescriptions.py
+strip =
+
+[paths]
+test-repo = http://autolandhg/
+upstream = http://autolandhg/
+# XXX inbound = /repos/inbound-test-repo

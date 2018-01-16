@@ -1,0 +1,30 @@
+{
+  "testing": true,
+  "auth": {
+    "autoland": "autoland"
+  },
+  "database": "dbname=autoland host=autolanddb user=autoland password=autoland",
+  "repos" : {
+    "test-repo": {
+      "tree": "test"
+    }
+  },
+  "pingback": {
+    "example.com": {
+      "type": "mozreview",
+      "user": "admin@example.com",
+      "password": "password"
+    },
+    "lando.example.com": {
+      "type": "lando",
+      "api-key": "WinnerWinnerChickenDinner"
+    }
+  },
+  "patch_url_buckets": {
+    "glob-dev": {
+      "aws_access_key_id": "AKIAIPP4TBCLZE5S5KLQ",
+      "aws_secret_access_key": "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"
+    }
+  }
+}
+
