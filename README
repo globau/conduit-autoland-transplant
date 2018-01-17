@@ -1,0 +1,26 @@
+Dockerised `autoland transplant` for demo/dev of lando/conduit.
+
+The following environmental variables can be passed into a container to
+configure autoland-transplant:
+
+postgres database:
+    DATABASE_HOST - hostname (default: autolanddb)
+    DATABASE_NAME - db name  (default: autoland)
+    DATABASE_USER - username (default: autoland)
+    DATABASE_PASS - password (default: autoland)
+
+authentication
+    AUTOLAND_KEY - secret key for `autoland` user, used to authenticate landing
+                   requests (default: autoland)
+
+repositories
+    REPO_NAME - name of the repository to land to (default: test-repo)
+    REPO_TREE - name of the repo in treestatus (default: test)
+
+lando
+    LANDO_HOST       - hostname of lando, used to validate pingback urls
+                       (default: lando.example.com)
+    LANDO_API_KEY    - pingbackup api-key (default: secret)
+    LANDO_BUCKET     - s3 bucket holding patches to land (default: lando-dev)
+    LANDO_AWS_KEY    - aws key for lando's s3 bucket (default: key)
+    LANDO_AWS_SECRET - aws secret for lando's s3 bucket (default: secret)

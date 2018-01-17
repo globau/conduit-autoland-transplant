@@ -1,21 +1,24 @@
-#!/bin/bash
+#!/bin/sh
+set -e
+REPO=${REOP:-test-repo}
+case "${1:-api}" in
+    "init")
+        # TODO initialise database
+        ;;
+    "api")
+        echo Starting autoland HTTPD
+        exec httpd -DFOREGROUND
+        # TODO httpd listen port
+        ;;
+    "daemon")
+        /create-config.py $AUTOLAND_HOME/autoland/config.json
+        cd $AUTOLAND_HOME
+        . venv/bin/activate
+        cd autoland
+        exec python autoland.py
+        ;;
+    *)
+        exec $*
+        ;;
+esac
 
-if [ "$1" == "api" ]; then
-    echo Starting autoland HTTPD
-    exec httpd -DFOREGROUND
-
-elif [ "$1" == "daemon" ]; then
-    if [ "$COMPOSED" == "true" ] && [ ! -e /repos/test-repo ]; then
-        echo Cloning test-repo from autolandhg
-        hg clone http://autolandhg/ /repos/test-repo
-        cp /hgrc /repos/test-repo/.hg
-    fi
-
-    # XXX debugging
-    #cd $AUTOLAND_HOME
-    #. venv/bin/activate
-    #cd autoland
-    #exec python autoland.py
-    /bin/s6-svscan /etc/s6
-
-fi
