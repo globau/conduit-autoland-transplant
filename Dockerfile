@@ -19,6 +19,7 @@ COPY requirements.txt /requirements.txt
 COPY httpd.conf /etc/apache2/conf.d/autoland.conf
 COPY entrypoint.sh /entrypoint.sh
 COPY create-config.py /create-config.py
+COPY create-schema.py /create-schema.py
 
 RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME; \
     virtualenv $AUTOLAND_HOME/venv; \

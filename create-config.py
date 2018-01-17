@@ -5,7 +5,7 @@ import os
 import sys
 
 if len(sys.argv) == 1:
-    print('syntax: update-config.py <config filename>')
+    print('syntax: create-config.py <config filename>')
     sys.exit(1)
 
 config = dict(testing=True, auth={}, database="", repos={}, pingback={},
