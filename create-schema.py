@@ -5,7 +5,7 @@ import sys
 
 import psycopg2
 
-if len(sys.argv) == 1:
+if len(sys.argv) != 2:
     print('syntax: create-schema.py <autoland path>')
     sys.exit(1)
 root = sys.argv[1]

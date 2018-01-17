@@ -5,7 +5,7 @@ merge = internal:merge
 [extensions]
 purge =
 rebase =
-rewritecommitdescriptions = /home/autoland/version-control-tools/autoland/hgext/rewritecommitdescriptions.py
+rewritecommitdescriptions = ${AUTOLAND_HOME}/hgext/rewritecommitdescriptions.py
 strip =
 
 [paths]

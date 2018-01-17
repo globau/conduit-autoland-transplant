@@ -14,7 +14,8 @@ authentication
                    requests (default: autoland)
 
 repositories
-    REPO_NAME - name of the repository to land to (default: test-repo)
+    REPO_URL  - url to the repo for cloning (default: http://autolandhg/)
+    REPO_NAME - name of the repo to land to (default: test-repo)
     REPO_TREE - name of the repo in treestatus (default: test)
 
 lando

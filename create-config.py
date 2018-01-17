@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-if len(sys.argv) == 1:
+if len(sys.argv) != 2:
     print('syntax: create-config.py <config filename>')
     sys.exit(1)
 
@@ -35,4 +35,3 @@ config['patch_url_buckets'][os.getenv('LANDO_BUCKET', 'lando-dev')] = {
 
 with open(sys.argv[1], mode='w') as f:
     json.dump(config, f, indent=4, sort_keys=True)
-print('%s created' % sys.argv[1])
