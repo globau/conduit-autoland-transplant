@@ -2,7 +2,7 @@
 set -e
 
 export PORT=${PORT:-8000}
-export REPO_URL=${REPO_URL:-http://autolandhg/}
+export REPO_URL=${REPO_URL:-http://autolandhg:8000/}
 export REPO_NAME=${REOP_NAME:-test-repo}
 
 /create-config.py $AUTOLAND_HOME/autoland/config.json
@@ -18,9 +18,9 @@ case "${1:-api}" in
         exec httpd -DFOREGROUND
         ;;
     "daemon")
-        # TODO echo Cloning test-repo from autolandhg
-        # TODO hg clone http://autolandhg/ /repos/test-repo
-        # TODO envsubst < /hgrc.template > /repos/test-repo/.hg
+        echo Cloning $REPO_NAME from $REPO_URL
+        hg clone $REPO_URL /repos/$REPO_NAME
+        envsubst < /hgrc.template > /repos/$REPO_NAME/.hg/hgrc
         cd $AUTOLAND_HOME
         . venv/bin/activate
         cd autoland
