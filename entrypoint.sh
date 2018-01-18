@@ -6,8 +6,7 @@ export REPO_URL=${REPO_URL:-http://autolandhg/}
 export REPO_NAME=${REOP_NAME:-test-repo}
 
 /create-config.py $AUTOLAND_HOME/autoland/config.json
-/copy-template.py /httpd.conf.template /etc/apache2/httpd.conf
-/copy-template.py /hgrc.template /hgrc
+envsubst < /httpd.conf.template > /etc/apache2/httpd.conf
 
 case "${1:-api}" in
     "init")
@@ -21,7 +20,7 @@ case "${1:-api}" in
     "daemon")
         # TODO echo Cloning test-repo from autolandhg
         # TODO hg clone http://autolandhg/ /repos/test-repo
-        # TODO cp /hgrc /repos/test-repo/.hg
+        # TODO envsubst < /hgrc.template > /repos/test-repo/.hg
         cd $AUTOLAND_HOME
         . venv/bin/activate
         cd autoland

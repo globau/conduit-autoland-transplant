@@ -1,5 +1,12 @@
 Dockerised `autoland transplant` for demo/dev of lando/conduit.
 
+Requires a running mercurial server to clone from (at startup) and land to.
+Set the REPO_URL environmental variable accordingly.
+
+Requires a postgres database.
+Set the DATABASE_* environmental variables accordingly.
+Use the `init` command to initialise the database.
+
 The following environmental variables can be passed into a container to
 configure autoland-transplant:
 

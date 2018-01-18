@@ -2,19 +2,48 @@
 
 import json
 import sys
+import time
 
 import psycopg2
+
+
+def db_conn(dsn):
+    # Wait for the postgres server to startup.
+    start_time = time.time()
+    last_error = None
+    while time.time() - start_time < 30:
+        try:
+            return psycopg2.connect(dsn)
+        except psycopg2.OperationalError as e:
+            last_error = e
+            time.sleep(0.1)
+    raise Exception('failed to connect to postgres: %s' % last_error)
+
 
 if len(sys.argv) != 2:
     print('syntax: create-schema.py <autoland path>')
     sys.exit(1)
-root = sys.argv[1]
 
-with open('%s/autoland/config.json' % root) as f:
+root = sys.argv[1]
+config_file = '%s/autoland/config.json' % root
+sql_file = '%s/sql/schema.sql' % root
+
+with open(config_file) as f:
     config = json.load(f)
 
 print('connecting to %s' % config['database'])
-with psycopg2.connect(config['database']) as conn:
+with db_conn(config['database']) as conn:
     conn.autocommit = True
     with conn.cursor() as curs:
-        curs.execute(open('%s/sql/schema.sql' % root).read())
+        curs.execute("SELECT current_database()")
+        db_name = curs.fetchone()[0]
+        curs.execute(
+            "SELECT EXISTS ("
+            "   SELECT 1"
+            "     FROM information_schema.tables"
+            "    WHERE table_catalog='%s' AND table_name='%s'"
+            ")" % (db_name, 'transplant'))
+
+        if not curs.fetchone()[0]:
+            print('initialising schema from %s' % sql_file)
+            curs.execute(open(sql_file).read())

@@ -9,7 +9,7 @@ ENV VCT_HOME /app/version-control-tools
 ENV AUTOLAND_HOME ${VCT_HOME}/autoland
 
 RUN apk update; \
-    apk add --no-cache python2 ca-certificates curl; \
+    apk add --no-cache python2 ca-certificates curl gettext; \
     apk add --no-cache --virtual build-dependencies build-base python-dev py-pip gcc postgresql-dev libffi-dev; \
     apk add --no-cache apache2 apache2-mod-wsgi openssh-client postgresql-client libffi; \
     pip install --no-cache "mercurial>=$HG_VERSION,<$HG_VERSION.99" virtualenv; \
@@ -21,7 +21,6 @@ COPY hgrc.template /
 COPY entrypoint.sh /
 COPY create-config.py /
 COPY create-schema.py /
-COPY copy-template.py /
 
 RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME; \
     virtualenv $AUTOLAND_HOME/venv; \
