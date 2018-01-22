@@ -6,6 +6,7 @@ FROM alpine:3.6
 
 ENV HG_VERSION 4.4
 ENV VCT_HOME /app/version-control-tools
+ENV VCT_REV 9abcbdc5fb39
 ENV AUTOLAND_HOME ${VCT_HOME}/autoland
 
 RUN apk update; \
@@ -22,7 +23,7 @@ COPY entrypoint.sh /
 COPY create-config.py /
 COPY create-schema.py /
 
-RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME; \
+RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME -r $VCT_REV; \
     virtualenv $AUTOLAND_HOME/venv; \
     $AUTOLAND_HOME/venv/bin/pip install -r /requirements.txt; \
     apk del build-dependencies
