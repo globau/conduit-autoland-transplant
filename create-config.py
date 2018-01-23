@@ -20,7 +20,7 @@ config['database'] = "host='%s' dbname='%s' user='%s' password='%s'" % (
 config['auth']['autoland'] = os.getenv('AUTOLAND_KEY', 'autoland')
 
 config['repos'][os.getenv('REPO_NAME', 'test-repo')] = {
-    "tree": os.getenv('REPO_TREE', 'test'),
+    "tree": os.getenv('REPO_NAME', 'test-repo'),
 }
 
 config['pingback'][os.getenv('LANDO_HOST', 'lando.example.com')] = {

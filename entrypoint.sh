@@ -3,7 +3,7 @@ set -e
 
 export PORT=${PORT:-8000}
 export REPO_URL=${REPO_URL:-http://autolandhg:8000/}
-export REPO_NAME=${REOP_NAME:-test-repo}
+export REPO_NAME=${REPO_NAME:-test-repo}
 
 /create-config.py $AUTOLAND_HOME/autoland/config.json
 envsubst < /httpd.conf.template > /etc/apache2/httpd.conf

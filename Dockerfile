@@ -14,7 +14,7 @@ RUN apk update; \
     apk add --no-cache --virtual build-dependencies build-base python-dev py-pip gcc postgresql-dev libffi-dev; \
     apk add --no-cache apache2 apache2-mod-wsgi openssh-client postgresql-client libffi; \
     pip install --no-cache "mercurial>=$HG_VERSION,<$HG_VERSION.99" virtualenv; \
-    mkdir /run/apache2
+    mkdir /app /repos /run/apache2
 
 COPY requirements.txt /
 COPY httpd.conf.template /
@@ -28,9 +28,13 @@ RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME -r 
     $AUTOLAND_HOME/venv/bin/pip install -r /requirements.txt; \
     apk del build-dependencies
 
+# XXX temporary fix until bug 1432365 lands
+COPY treestatus.py $AUTOLAND_HOME/autoland
+
 RUN addgroup -g 10001 app; \
     adduser -D -u 10001 -G app -g app app; \
-    chown app:app /app;
+    chown -R app:app /app /repos /etc/apache2 /run/apache2 /var/log/apache2;
 
+USER app
 ENTRYPOINT ["/entrypoint.sh"]
 CMD []

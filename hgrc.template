@@ -9,6 +9,5 @@ rewritecommitdescriptions = ${AUTOLAND_HOME}/hgext/rewritecommitdescriptions.py
 strip =
 
 [paths]
-test-repo = http://autolandhg/
-upstream = http://autolandhg/
-# XXX inbound = /repos/inbound-test-repo
+${REPO_NAME} = ${REPO_URL}
+upstream = ${REPO_URL}
