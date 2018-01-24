@@ -6,7 +6,7 @@ FROM alpine:3.6
 
 ENV HG_VERSION 4.4
 ENV VCT_HOME /app/version-control-tools
-ENV VCT_REV 9abcbdc5fb39
+ENV VCT_REV 2ba1325e814b
 ENV AUTOLAND_HOME ${VCT_HOME}/autoland
 
 RUN apk update; \
@@ -27,9 +27,6 @@ RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME -r 
     virtualenv $AUTOLAND_HOME/venv; \
     $AUTOLAND_HOME/venv/bin/pip install -r /requirements.txt; \
     apk del build-dependencies
-
-# XXX temporary fix until bug 1432365 lands
-COPY treestatus.py $AUTOLAND_HOME/autoland
 
 RUN addgroup -g 10001 app; \
     adduser -D -u 10001 -G app -g app app; \
