@@ -12,5 +12,5 @@ jobs:
           path: version.json
       - run: |
           docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-          docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
-          docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          docker build -t $DOCKER_USER/${DOCKER_IMAGE:-$CIRCLE_PROJECT_REPONAME} .
+          docker push $DOCKER_USER/${DOCKER_IMAGE:-$CIRCLE_PROJECT_REPONAME}
