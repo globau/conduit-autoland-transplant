@@ -31,7 +31,7 @@ COPY create-schema.py /
 RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME -r $VCT_REV; \
     virtualenv $AUTOLAND_HOME/venv; \
     $AUTOLAND_HOME/venv/bin/pip install -r /requirements.txt; \
-    apk del build-dependencies \
+    apk del build-dependencies; \
     chown -R app:app /app /repos /etc/apache2 /run/apache2 /var/log/apache2
 
 USER app
