@@ -18,7 +18,7 @@ case "${1:-api}" in
         exec httpd -DFOREGROUND
         ;;
     "daemon")
-        if [[ ! -e /repos/$REPO_NAME ]]; then
+        if [[ ! -d /repos/$REPO_NAME ]]; then
             echo Cloning $REPO_NAME from $REPO_URL
             hg clone $REPO_URL /repos/$REPO_NAME
             envsubst < /hgrc.template > /repos/$REPO_NAME/.hg/hgrc
