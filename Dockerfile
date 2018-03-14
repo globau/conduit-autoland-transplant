@@ -27,6 +27,7 @@ COPY hgrc.template /
 COPY entrypoint.sh /
 COPY create-config.py /
 COPY create-schema.py /
+COPY version.json /app/version.json
 
 RUN hg clone https://hg.mozilla.org/hgcustom/version-control-tools $VCT_HOME -r $VCT_REV; \
     virtualenv $AUTOLAND_HOME/venv; \
