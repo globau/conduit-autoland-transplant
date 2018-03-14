@@ -11,7 +11,7 @@ RUN addgroup -g 10001 app; \
 
 ENV HG_VERSION 4.4
 ENV VCT_HOME /app/version-control-tools
-ENV VCT_REV 1ae17f4c9ce628a6e4dd7d0462ffb757c6040d60
+ENV VCT_REV 946206f145d63aa22a016074650c41889d9a9b11
 ENV AUTOLAND_HOME ${VCT_HOME}/autoland
 
 RUN apk update; \
