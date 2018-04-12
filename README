@@ -7,6 +7,9 @@ Requires a postgres database.
 Set the DATABASE_* environmental variables accordingly.
 Use the `init` command to initialise the database.
 
+Requires running a treestatus.
+Set the TREESTATUS_URL environment variable accordingly.
+
 The following environmental variables can be passed into a container to
 configure autoland-transplant:
 
@@ -23,6 +26,11 @@ authentication
 repositories
     REPO_URL  - url to the repo for cloning (default: http://autolandhg:8000/)
     REPO_NAME - name of the repo to land to (default: test-repo)
+
+treestatus
+    TREESTATUS_URL - format string url to treestatus, usually something of
+                     the form "https://<domain>/%s" (default: treestatus/%s)
+              
 
 lando
     LANDO_HOST       - hostname of lando, used to validate pingback urls
