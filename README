@@ -31,7 +31,6 @@ treestatus
     TREESTATUS_URL - format string url to treestatus, usually something of
                      the form "https://<domain>/%s" (default: treestatus/%s)
               
-
 lando
     LANDO_HOST       - hostname of lando, used to validate pingback urls
                        (default: lando.example.com)
